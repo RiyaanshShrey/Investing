@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Triad Adventure | The Ultimate Virtual Wealth Simulator</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dark-mode">
+
+    <!-- Name Entry Overlay -->
+    <div id="name-overlay" class="overlay">
+        <div class="glass name-card text-center animate-fade-in creepy-border">
+            <h1 class="creepy-yellow headline-main">BECOME FILTHY RICH... <br> OR REGRET IT FOREVER 😈💰</h1>
+            <p class="creepy-subtitle">Enter your name to sign the blood pact and unlock the forbidden path to obscene
+                wealth. (No turning back, mortal.)</p>
+            <form id="name-form" onsubmit="return false;">
+                <input type="text" id="player-name-input" placeholder="Your Full Name (the one on your soul contract)"
+                    required>
+                <button type="submit" class="btn btn-creepy btn-block mt-20" onclick="handleNameSubmit()">SELL YOUR SOUL
+                    & START INVESTING 💰😈</button>
+            </form>
+            <p class="funny-note">Just kidding... or am I? 😏 Virtual gains only – no actual souls required!</p>
+        </div>
+    </div>
+
+    <nav class="glass-nav">
+        <div class="container nav-content">
+            <div class="logo">TRIAD <span class="accent-gold">Adventure</span></div>
+            <ul class="nav-links">
+                <li><a href="#why-play">Why Play?</a></li>
+                <li><a href="#simulator">Simulator</a></li>
+                <li><a href="#council">The Council</a></li>
+                <li><a href="#start">Start Quest</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <span class="badge">A High-Reward Virtual Simulator</span>
+            <div id="welcome-banner" class="hidden">
+                <h2 id="greeting-text" class="creepy-greeting">Welcome to the dark side, <span class="accent-gold"
+                        id="display-name">Player</span>! Your virtual empire awaits... let's see how much filthy virtual
+                    riches we can steal for you today! 😈</h2>
+            </div>
+            <h1>Multiply Your Virtual Wealth <br>in the <span class="accent">Ultimate Game!</span></h1>
+            <p id="personalized-tease" class="hidden">Now, <span id="tease-name" class="accent-gold">mortal</span>, tell
+                us how much you're willing to 'sacrifice' today... watch it multiply into madness! 🚀💸</p>
+            <p id="default-tease">Experience the thrill of legendary gains without the risk. Triad Adventure is the
+                world's most immersive wealth simulation.</p>
+            <div class="hero-btns">
+                <a href="#simulator" class="btn btn-primary">Try Simulator</a>
+                <a href="#start" class="btn btn-outline">Join Quest</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="why-play" class="features-section">
+        <div class="container text-center">
+            <h2 class="section-title">Why Play the Triad Game?</h2>
+            <div class="features-grid">
+                <div class="feature-card glass">
+                    <i class="fa-solid fa-rocket fa-3x icon-gold"></i>
+                    <h3>Epic Growth</h3>
+                    <p>Watch your virtual numbers skyrocket with our unique 3x reward mechanics.</p>
+                </div>
+                <div class="feature-card glass">
+                    <i class="fa-solid fa-shield-halved fa-3x icon-gold"></i>
+                    <h3>Zero Risk</h3>
+                    <p>All transactions are 100% simulated. Perfect training for future tycoons.</p>
+                </div>
+                <div class="feature-card glass">
+                    <i class="fa-solid fa-users fa-3x icon-gold"></i>
+                    <h3>Elite Team</h3>
+                    <p>Guidance from the legendary Triad Council throughout your journey.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="simulator" class="calc-section">
+        <div class="container">
+            <div class="calc-container glass animate-fade-in">
+                <h2 class="section-title text-center">Simulate Your Investment Adventure</h2>
+                <p class="text-center subtext">Calculate your potential legendary earnings in this simulation.</p>
+                <form id="calc-form" onsubmit="return false;">
+                    <div class="input-group">
+                        <label for="invest">Simulated Capital (USD)</label>
+                        <div class="input-wrapper">
+                            <span class="currency">$</span>
+                            <input type="number" name="invest" id="invest" min="100" value="1000">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-calculate btn-block" onclick="calculateAJAX()">Unlock Virtual
+                        Gains</button>
+                </form>
+                <div id="result" class="result-area"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="council" class="team-section">
+        <div class="container text-center">
+            <h2 class="section-title">The Strategic Council</h2>
+            <div class="team-grid">
+                <div class="team-card glass">
+                    <div class="member-img">
+                        <img src="{{ url_for('static', filename='images/manish_pfp.webp') }}" class="avatar-img"
+                            alt="Manish">
+                    </div>
+                    <h3>Manish</h3>
+                    <p class="role">Chief Deal Closer</p>
+                </div>
+                <div class="team-card glass">
+                    <div class="member-img">
+                        <img src="{{ url_for('static', filename='images/tanjiro_pfp.jpg') }}" class="avatar-img"
+                            alt="Tanjiro">
+                    </div>
+                    <h3>Tanjiro</h3>
+                    <p class="role">Lead Generator King</p>
+                </div>
+                <div class="team-card glass">
+                    <div class="member-img">
+                        <img src="{{ url_for('static', filename='images/aditya.webp') }}" class="avatar-img"
+                            alt="Aditya">
+                    </div>
+                    <h3>Aditya</h3>
+                    <p class="role">Chief Payment Wizard</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container text-center">
+            <h2 class="section-title">Player Testimonials</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card glass">
+                    <p>"This game is addictive – my virtual portfolio exploded! 😄 Best simulation ever."</p>
+                    <div class="client-info">
+                        <img src="https://i.pravatar.cc/50?u=1" alt="Player 1">
+                        <span>Apex_Trader7, Master Rank</span>
+                    </div>
+                </div>
+                <div class="testimonial-card glass">
+                    <p>"I turned virtual $100 into $350 in seconds. The thrill is real, the money is not!"</p>
+                    <div class="client-info">
+                        <img src="https://i.pravatar.cc/50?u=2" alt="Player 2">
+                        <span>Gamer_Wealth, Explorer</span>
+                    </div>
+                </div>
+                <div class="testimonial-card glass">
+                    <p>"The UI is so premium, I almost forgot it was a game. Incredible experience!"</p>
+                    <div class="client-info">
+                        <img src="https://i.pravatar.cc/50?u=3" alt="Player 3">
+                        <span>SimKing, Legend Rank</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="start" class="invest-section">
+        <div class="container">
+            <div class="invest-box glass">
+                <div class="invest-content">
+                    <h2>Start Your Adventure</h2>
+                    <p>Join the simulation and begin building your virtual empire today:</p>
+                    <ul class="steps">
+                        <li><strong>1. Name Your Character:</strong> Submit your name to begin.</li>
+                        <li><strong>2. Simulate Growth:</strong> Use the tool to project gains.</li>
+                        <li><strong>3. Begin Quest:</strong> Click below to start the adventure.</li>
+                    </ul>
+                    <div class="payment-mockup">
+                        <p><i class="fa-solid fa-gamepad"></i> Game UPI: <span class="accent-gold">triad.game@upi</span>
+                        </p>
+                        <p><i class="fa-brands fa-ethereum"></i> BTC Wallet: <span
+                                class="accent-gold">1BvBMVIRTUAL...</span></p>
+                    </div>
+                    <div id="countdown" class="badge-gold">Adventure Started!</div>
+                    <button class="btn btn-primary btn-block mt-20" onclick="showGameAlert()">Start Adventure</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container text-center">
+            <div class="logo-small">TRIAD Adventure Simulator</div>
+            <p>&copy; 2026 Triad Games. All rights reserved.</p>
+            <p class="prank-note">This is a fun virtual investment simulator game – no real money or transactions
+                involved!</p>
+        </div>
+    </footer>
+
+    <!-- JS confetti library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
